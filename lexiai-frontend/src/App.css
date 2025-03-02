@@ -25,14 +25,33 @@ h1 {
   font-size: 2.5rem;
   margin: 20px 0;
   color: white;  /* Set text color to white */
+  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.4);  /* Optional text shadow for effect */
   display: inline-block;
-  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.4); /* Optional shadow effect */
   animation: fadeInDown 1s ease-in-out;
 }
+
+/* Logo Container */
+.logo-container {
+  position: absolute;
+  top: 80px;  /* Ensure the logo is below the navbar */
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.4);  /* Match the background with the page */
+  padding: 10px;  /* Optional padding to make the background a bit bigger */
+  border-radius: 10px;  /* Rounded corners */
+  animation: flyIn 1s ease-out;
+}
+
+/* Logo */
+.logo {
+  width: 150px;  /* Adjust logo size */
+  display: block;  /* Ensures the logo is displayed correctly */
+}
+
 /* Containers */
 .chatbot-container,
 .search-bar,
 .document-form {
+  margin-top: 100px;  /* Push down the chatbot container */
   margin-bottom: 42px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.4);
@@ -92,7 +111,7 @@ button:hover {
   margin-top: 20px;
   padding: 15px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 0.1);
   border: 1px solid #00c3ff;
   color: white;
   text-align: left;
@@ -128,5 +147,16 @@ button:hover {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes flyIn {
+  from {
+    transform: translateX(-100%) rotate(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
   }
 }

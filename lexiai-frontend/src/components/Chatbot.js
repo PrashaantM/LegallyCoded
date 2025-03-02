@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import ResponseBox from "./ResponseBox";  // Corrected the path if necessary
 
 const Chatbot = () => {
   const [query, setQuery] = useState("");
@@ -24,7 +25,9 @@ const Chatbot = () => {
         placeholder="Enter your legal question"
       />
       <button onClick={handleQuerySubmit}>Submit</button>
-      {response && <div className="response">{response}</div>}
+
+      {/* Use the ResponseBox component for displaying the response */}
+      {response && <ResponseBox response={response} />}
     </div>
   );
 };
