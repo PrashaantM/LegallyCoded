@@ -7,13 +7,19 @@ import CaseLawResults from "./components/CaseLawResults";
 import NavigationBar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import LexiAiLogo from './file.svg';  // Update the import to point to the .svg file
 
 function App() {
   return (
     <Router>
       <div className="App">
         <NavigationBar />
+        
+        {/* Display the imported logo with a class */}
+        <img src={LexiAiLogo} alt="LexiAI Logo" className="logo" />
+        
         <h1>LexiAI - AI-Powered Legal Assistant</h1>
+        
         <Routes>
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/search" element={<SearchBar />} />
