@@ -1,34 +1,42 @@
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
-import spacy
-from transformers import pipeline
-import json
 import nltk
-from nltk.corpus import stopwords
+from nltk import word_tokenize, pos_tag, ne_chunk
+from transformers import pipeline
 from dotenv import load_dotenv
-
-load_dotenv()
-
 app = Flask(__name__, static_folder="../lexiai-frontend/build", static_url_path="")
 CORS(app)
 
-# Load spaCy model for entity recognition
-nlp = spacy.load("en_core_web_sm")
+# Download required NLTK datasets
+nltk.download("punkt")
+nltk.download("maxent_ne_chunker")
+nltk.download("words")
 
 # Load HuggingFace model for GPT-style responses
 openai_model = pipeline("text-generation", model="gpt-2")  # Use a local transformer model like GPT-2
 
-# Example function to analyze text using spaCy
+# Example function to analyze text using NLTK
 def analyze_text(text):
-    doc = nlp(text)
+    # Tokenize the text and apply POS tagging
+    tokens = word_tokenize(text)
+    tagged_tokens = pos_tag(tokens)
+
+    # Perform Named Entity Recognition
+    tree = ne_chunk(tagged_tokens)
+    
+    # Extract entities from the tree
     entities = []
-    for ent in doc.ents:
-        entities.append({
-            "name": ent.text,
-            "type": ent.label_,
-            "salience": 1.0  # SpaCy doesn't provide salience, so setting it to 1.0 by default
-        })
+    for subtree in tree:
+        if isinstance(subtree, nltk.Tree):  # If it's a subtree, it's an entity
+            entity_name = " ".join([word for word, tag in subtree])
+            entity_type = subtree.label()
+            entities.append({
+                "name": entity_name,
+                "type": entity_type,
+                "salience": 1.0  # Set salience to 1.0 for simplicity (since NLTK doesn't return salience)
+            })
+    
     return entities
 
 # Generate a response using the local GPT-2 model
@@ -40,6 +48,7 @@ def get_openai_response(prompt):
         return response[0]["generated_text"]
     except Exception as e:
         print("Error generating response:", e)
+        return "An error occurred while generating the response."
         return "An error occurred while generating the response."
 
 # Simulating a local case law search by loading a small case law dataset
