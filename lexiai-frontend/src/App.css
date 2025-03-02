@@ -1,36 +1,139 @@
+/* General Styling */
 .App {
   padding: 20px;
   font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000428, #004e92);
+  color: white;
+  min-height: 100vh;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
 }
 
+/* Navbar Styling */
+.navbar {
+  background: linear-gradient(90deg, #001f3f, #005bb5);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 191, 255, 0.7);
+  transition: 0.3s;
+}
+
+.navbar:hover {
+  transform: scale(1.02);
+}
+
+/* Heading Styling with Cool Gradient */
+h1 {
+  font-size: 2.5rem;
+  margin: 20px 0;
+  background: linear-gradient(135deg, #00c3ff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.4);
+  animation: fadeInDown 1s ease-in-out;
+}
+
+/* Containers */
 .chatbot-container,
 .search-bar,
 .document-form {
-  margin-bottom: 40px;
+  margin-bottom: 42px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px rgba(0, 191, 255, 0.6);
+  transition: transform 0.3s ease-in-out;
 }
 
+.chatbot-container:hover,
+.search-bar:hover,
+.document-form:hover {
+  transform: scale(1.03);
+}
+
+/* Form Inputs & Buttons */
 input, textarea, select, button {
   margin: 10px 0;
-  padding: 10px;
+  padding: 12px;
   width: 100%;
   max-width: 400px;
-  display: block;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
 }
 
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus, textarea:focus {
+  border-color: #00c3ff;
+  box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.6);
+}
+
+/* Button Styling */
 button {
-  background-color: #007bff;
-  color: #0efff7f9;
+  background: linear-gradient(90deg, #007bff, #00c3ff);
+  color: white;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(90deg, #0056b3, #008cff);
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
 }
 
+/* Response & Results Boxes */
 .response, .results {
   margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #00c3ff;
+  color: white;
+  text-align: left;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+/* Cool Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
