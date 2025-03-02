@@ -1,18 +1,18 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const NavBar = () => {
+const NavigationBar = () => {
   return (
     <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="#home">LexiAI</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/">LexiAI</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#chatbot">Chatbot</Nav.Link>
-        <Nav.Link href="#search">Case Law Search</Nav.Link>
-        <Nav.Link href="#document">Document Generation</Nav.Link>
+        <Nav.Link as={Link} to="/chatbot">Chatbot</Nav.Link>
+        <Nav.Link as={Link} to="/search">Case Law Search</Nav.Link>
+        <Nav.Link as={Link} to="/document">Document Generation</Nav.Link>
       </Nav>
     </Navbar>
   );
 };
 
-export default NavBar;
+export default NavigationBar;

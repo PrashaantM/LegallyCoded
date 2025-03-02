@@ -15,7 +15,6 @@ function App() {
         <NavigationBar />
         <h1>LexiAI - AI-Powered Legal Assistant</h1>
         <Routes>
-          <Route path="/" element={<Chatbot />} />
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/search" element={<SearchBar />} />
           <Route path="/document" element={<DocumentForm />} />
