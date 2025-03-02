@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import ResponseBox from "./ResponseBox";  // Corrected the path if necessary
+import ResponseBox from "./ResponseBox";
 
 const CaseLawResults = ({ results }) => {
   const [response, setResponse] = useState("");
