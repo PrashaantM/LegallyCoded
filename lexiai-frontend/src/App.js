@@ -1,7 +1,7 @@
 import React from "react";
-import Chatbot from "./components /Chatbot";
-import SearchBar from "./components /SearchBar";
-import DocumentForm from "./components /DocumentForm";
+import Chatbot from "./components/Chatbot";
+import SearchBar from "./components/SearchBar";
+import DocumentForm from "./components/DocumentForm";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
