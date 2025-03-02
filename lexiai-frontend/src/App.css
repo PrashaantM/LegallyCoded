@@ -8,7 +8,7 @@
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Navbar*/
+/* Navbar */
 .navbar {
   background: linear-gradient(90deg, #001f3f, #005bb5);
   padding: 15px;
@@ -21,20 +21,14 @@
   transform: scale(1.02);
 }
 
-
 h1 {
   font-size: 2.5rem;
   margin: 20px 0;
-  background: linear-gradient(135deg, #00c3ff, #ffffff);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: white;  /* Set text color to white */
   display: inline-block;
-  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.4);
+  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.4); /* Optional shadow effect */
   animation: fadeInDown 1s ease-in-out;
 }
-
 /* Containers */
 .chatbot-container,
 .search-bar,
