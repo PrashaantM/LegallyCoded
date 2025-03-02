@@ -5,35 +5,26 @@ const Chatbot = () => {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleQuerySubmit = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/chat", { query });
+      const res = await axios.get("/api/query", { params: { query } });
       setResponse(res.data.response);
     } catch (error) {
-      console.error("Error fetching response:", error);
+      setResponse("Error processing your request.");
     }
   };
 
   return (
     <div className="chatbot-container">
-      <h2>LexiAI Chatbot</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Ask a legal question..."
-          required
-        />
-        <button type="submit">Ask</button>
-      </form>
-      {response && (
-        <div className="response">
-          <h3>Response:</h3>
-          <p>{response}</p>
-        </div>
-      )}
+      <h2>Ask a Legal Question</h2>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Enter your legal question"
+      />
+      <button onClick={handleQuerySubmit}>Submit</button>
+      {response && <div className="response">{response}</div>}
     </div>
   );
 };

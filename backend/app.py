@@ -1,21 +1,19 @@
 from flask import Flask, jsonify, request, send_from_directory
-import os
 from flask_cors import CORS
+import os
 
-
-app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
-
+app = Flask(__name__, static_folder="../lexiai-frontend/build", static_url_path="")
+CORS(app)
 
 # Home route
 @app.route("/")
 def home():
-    return jsonify({"message": "LexiAI is running!"})
+    return send_from_directory(app.static_folder, "index.html")
 
 # Favicon handler (Prevents 404 errors)
 @app.route("/favicon.ico")
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, "static"), "favicon.ico")
+    return send_from_directory(os.path.join(app.static_folder, "static"), "favicon.ico")
 
 # Legal query handler (Modify this for AI integration)
 @app.route("/api/query", methods=["GET"])
@@ -32,6 +30,11 @@ def generate_document():
     document_type = data.get("document_type")
     content = f"Auto-generated {document_type} document based on input"
     return jsonify({"document": content})
+
+# Serving React's static files
+@app.route("/static/<path:path>")
+def serve_static(path):
+    return send_from_directory(os.path.join(app.static_folder, "static"), path)
 
 if __name__ == "__main__":
     app.run(debug=True)
