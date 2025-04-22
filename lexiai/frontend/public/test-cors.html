@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS Test</title>
+</head>
+<body>
+  <h1>CORS Test</h1>
+  <button id="testBtn">Test Registration</button>
+  <pre id="result" style="white-space: pre-wrap; background: #f0f0f0; padding: 10px; margin-top: 20px;"></pre>
+
+  <script>
+    document.getElementById('testBtn').addEventListener('click', async () => {
+      const resultEl = document.getElementById('result');
+      resultEl.textContent = 'Testing...';
+      
+      try {
+        const testUser = {
+          username: 'corsTester' + Date.now(),
+          email: `test${Date.now()}@example.com`,
+          password: 'password123'
+        };
+        
+        resultEl.textContent += `\nAttempting to register: ${testUser.username}`;
+        
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(testUser)
+        });
+        
+        resultEl.textContent += `\nStatus: ${response.status} ${response.statusText}`;
+        resultEl.textContent += `\nHeaders: ${JSON.stringify(Object.fromEntries([...response.headers]), null, 2)}`;
+        
+        const data = await response.json();
+        resultEl.textContent += `\nResponse data: ${JSON.stringify(data, null, 2)}`;
+        
+        if (response.ok) {
+          resultEl.textContent += '\n\nTest PASSED! ✅';
+        } else {
+          resultEl.textContent += '\n\nTest FAILED! ❌';
+        }
+      } catch (error) {
+        resultEl.textContent += `\n\nError: ${error.message}`;
+        resultEl.textContent += '\n\nTest FAILED! ❌';
+        console.error('CORS Test Error:', error);
+      }
+    });
+  </script>
+</body>
+</html> 
